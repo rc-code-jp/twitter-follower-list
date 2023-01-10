@@ -1,0 +1,17 @@
+{
+  "name": "twitter-follower-watch",
+  "version": "1.0.0",
+  "main": "main.ts",
+  "author": "rc-code-jp",
+  "license": "MIT",
+  "scripts": {
+    "dev": "node-ts main.ts"
+  },
+  "dependencies": {
+    "node-ts": "^5.1.2",
+    "twitter-api-v2": "^1.13.0"
+  },
+  "volta": {
+    "node": "16.18.1"
+  }
+}
