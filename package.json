@@ -1,15 +1,16 @@
 {
   "name": "twitter-follower-watch",
   "version": "1.0.0",
-  "main": "main.ts",
+  "main": "src/main.js",
   "author": "rc-code-jp",
   "license": "MIT",
   "scripts": {
-    "dev": "node-ts main.ts"
+    "dev": "node src/main.js"
   },
   "dependencies": {
-    "node-ts": "^5.1.2",
-    "twitter-api-v2": "^1.13.0"
+    "csv-writer": "^1.6.0",
+    "dotenv": "^16.0.3",
+    "twitter-api-sdk": "^1.2.1"
   },
   "volta": {
     "node": "16.18.1"
