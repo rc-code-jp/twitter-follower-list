@@ -1,12 +1,12 @@
 # Twitter Follower List
 
-TwitterのfollowerをCSVに出力する。
+Twitter follower list to csv file
 
 ## Note
 
 https://developer.twitter.com/ja/docs/twitter-api/rate-limits#v2-limits
 
-15回/15min
+15count/15min
 
 ## Set up
 

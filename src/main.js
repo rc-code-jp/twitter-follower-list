@@ -17,6 +17,7 @@ const getFollower = async (userName, nextToken) => {
   if (!process.argv[2]) {
     throw Error('arguments needed');
   }
+
   console.log('process');
  
   let nextToken = undefined;
@@ -32,6 +33,8 @@ const getFollower = async (userName, nextToken) => {
       break;
     }
   }
+
+  console.log(`followerList length: ${followerList.length}`);
 
   // CSV
   const csvWriter = createObjectCsvWriter({
