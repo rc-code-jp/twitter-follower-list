@@ -36,9 +36,12 @@ const getFollower = async (userName, nextToken) => {
 
   console.log(`followerList length: ${followerList.length}`);
 
+  const date = new Date();
+  const dateStr = `${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()}`
+
   // CSV
   const csvWriter = createObjectCsvWriter({
-    path: `./output/followers_${Date.now()}.csv`,
+    path: `./output/followers_${dateStr}.csv`,
     header: ['id', 'username', 'name']
   });
   await csvWriter.writeRecords(followerList).catch((err) => {
