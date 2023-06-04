@@ -1,11 +1,11 @@
 {
-  "name": "twitter-follower-watch",
+  "name": "twitter-tools",
   "version": "1.0.0",
-  "main": "src/main.js",
+  "main": "",
   "author": "rc-code-jp",
   "license": "MIT",
   "scripts": {
-    "dev": "node src/main.js"
+    "begin": "node src/followerList.js"
   },
   "dependencies": {
     "csv-writer": "^1.6.0",
@@ -13,6 +13,7 @@
     "twitter-api-sdk": "^1.2.1"
   },
   "volta": {
-    "node": "16.18.1"
+    "node": "16.18.1",
+    "yarn": "1.22.19"
   }
 }

@@ -1,27 +1,22 @@
-# Twitter Follower List
-
-Twitter follower list to csv file
-
-## Note
-
-https://developer.twitter.com/ja/docs/twitter-api/rate-limits#v2-limits
-
-15count/15min
+# Twitter Tools
 
 ## Set up
 
 ```bash
-npm install
+yarn install
 ```
 
-
 ```bash
-cp .env.example .env
+cp env/.env.example .env
 ```
 
 Edit `.env` file
 
-## Run
+### Follower list to CSV
+
+Doc: https://developer.twitter.com/ja/docs/twitter-api/rate-limits#v2-limits
+
+> 15count/15min
 
 ```bash
 yarn dev username
