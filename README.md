@@ -24,9 +24,15 @@ yarn run begin:f username
 
 ## 2. Tweets list to CSV
 
-TODO: doc
+TODO: https://developer.twitter.com/en/docs/twitter-api/tweets/timelines/api-reference/get-users-id-tweets
 
 ```bash
 yarn run begin:t username
+```
+
+## 3. Image Download
+
+```bash
+yarn run begin:i username
 ```
 

@@ -6,7 +6,8 @@
   "license": "MIT",
   "scripts": {
     "begin:f": "node src/followerList.js",
-    "begin:t": "node src/tweetList.js"
+    "begin:t": "node src/tweetList.js",
+    "begin:i": "node src/imageList.js"
   },
   "dependencies": {
     "csv-writer": "^1.6.0",

@@ -1,4 +1,4 @@
 node_modules
-output/*.csv
+out/*.csv
 .env
 .DS_Store
