@@ -9,11 +9,14 @@ const getUserByName = async (userName) => {
   return user;
 }
 
-const getFollower = async (userId, nextToken) => {
-  const res = await client.users.usersIdFollowers(userId, {
+const getTweets = async (userId, nextToken) => {
+  const res = await client.tweets.usersIdTweets(userId, {
     max_results: 100, // 100が許容最大値
-    pagination_token: nextToken
-  });
+    exclude: ['retweets', 'replies'],
+    expansions: ['attachments.media_keys'],
+    'media.fields': ['url', 'type'],
+    pagination_token: nextToken,
+  })
   return res;
 }
 
@@ -23,15 +26,28 @@ const getFollower = async (userId, nextToken) => {
   }
 
   console.log('process');
- 
+
   let nextToken = undefined;
   const list = [];
 
   const user = await getUserByName(process.argv[2]);
 
   while(true) {
-    const res = await getFollower(user.id, nextToken);
+    const res = await getTweets(user.id, nextToken);
     res.data.forEach((item) => {
+      item.media = [];
+      // 画像付き
+      if (item.attachments && item.attachments.media_keys) {
+        item.attachments.media_keys.forEach((mediaKey) => {
+          const media = res.includes.media.find((media) => {
+            return media.media_key === mediaKey;
+          });
+          item.media.push({
+            type: media.type,
+            url: media.url,
+          });
+        });
+      }
       // 追加
       list.push(item);
     });
@@ -48,8 +64,8 @@ const getFollower = async (userId, nextToken) => {
 
   // CSV
   const csvWriter = createObjectCsvWriter({
-    path: `./output/follower_list_${dateStr}.csv`,
-    header: ['id', 'username', 'name']
+    path: `./output/tweet_list_${dateStr}.csv`,
+    header: ['id', 'text']
   });
   await csvWriter.writeRecords(list).catch((err) => {
     console.dir(err);

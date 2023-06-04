@@ -5,7 +5,8 @@
   "author": "rc-code-jp",
   "license": "MIT",
   "scripts": {
-    "begin": "node src/followerList.js"
+    "begin:f": "node src/followerList.js",
+    "begin:t": "node src/tweetList.js"
   },
   "dependencies": {
     "csv-writer": "^1.6.0",
