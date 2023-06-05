@@ -1,35 +1,34 @@
-const {createObjectCsvWriter} = require('csv-writer');
+const { createObjectCsvWriter } = require('csv-writer')
 
-const {twitterApiClient} = require('./utils/twitterApiClient');
-const {getUserByName} = require('./utils/getUserByName');
-const {getAllTweeByUserId} = require('./utils/getAllTweeByUserId');
+const { getUserByName } = require('./utils/getUserByName')
+const { getAllTweeByUserId } = require('./utils/getAllTweeByUserId')
 
 const userName = process.argv[2];
 
 (async () => {
   if (!userName) {
-    throw Error('arguments needed');
+    throw Error('arguments needed')
   }
 
-  console.log('process');
+  console.log('process')
 
-  const user = await getUserByName(twitterApiClient, userName);
+  const user = await getUserByName(userName)
 
-  const list = await getAllTweeByUserId(twitterApiClient, user.id)
+  const list = await getAllTweeByUserId(user.id)
 
-  console.log(`List count: ${list.length}`);
+  console.log(`List count: ${list.length}`)
 
-  const date = new Date();
+  const date = new Date()
   const dateStr = date.getTime()
 
   // CSV
   const csvWriter = createObjectCsvWriter({
     path: `./out/tweet_list_${dateStr}.csv`,
     header: ['id', 'text']
-  });
+  })
   await csvWriter.writeRecords(list).catch((err) => {
-    console.dir(err);
-  });
+    console.dir(err)
+  })
 
-  console.log('success');
-})();
+  console.log('success')
+})()
