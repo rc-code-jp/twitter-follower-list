@@ -4,9 +4,9 @@ const fetch = require('node-fetch')
 const { getUserByName } = require('./utils/getUserByName')
 const { getAllTweeByUserId } = require('./utils/getAllTweeByUserId')
 
-const userName = process.argv[2];
+const userName = process.argv[2]
 
-(async () => {
+;(async () => {
   if (!userName) {
     throw Error('arguments needed')
   }

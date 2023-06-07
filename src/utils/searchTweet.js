@@ -1,17 +1,19 @@
 const { twitterApiClient } = require('../libs/twitterApiClient')
 
+const MAX_TWEET_COUNT = 1000
+
 /**
- * ユーザーIDからツイートを全件取得する
+ * ツイートを検索
  * @param {*} twitterApiClient
  * @param {*} userId
  * @returns
  */
-module.exports.getAllTweeByUserId = async (userId) => {
+module.exports.searchTweet = async (searchQuery) => {
   let nextToken
   const list = []
 
   while (true) {
-    const res = await getTweets(userId, nextToken)
+    const res = await getTweets(searchQuery, nextToken)
     res.data.forEach((item) => {
       item.media = []
       // 画像付き
@@ -34,7 +36,7 @@ module.exports.getAllTweeByUserId = async (userId) => {
       list.push(item)
     })
     nextToken = res.meta.next_token
-    if (!nextToken) {
+    if (!nextToken || list.length >= MAX_TWEET_COUNT) {
       break
     }
   }
@@ -42,10 +44,11 @@ module.exports.getAllTweeByUserId = async (userId) => {
   return list
 }
 
-const getTweets = async (userId, nextToken) => {
-  const res = await twitterApiClient.tweets.usersIdTweets(userId, {
+const getTweets = async (searchQuery, nextToken) => {
+  const res = await twitterApiClient.tweets.tweetsFullarchiveSearch({
     max_results: 100, // 100が許容最大値
-    exclude: ['retweets', 'replies'],
+    query: searchQuery,
+    sort_order: 'recency',
     expansions: ['attachments.media_keys'],
     'media.fields': ['media_key', 'url', 'type', 'width', 'alt_text', 'variants'],
     pagination_token: nextToken

@@ -30,7 +30,13 @@ TODO: https://developer.twitter.com/en/docs/twitter-api/tweets/timelines/api-ref
 yarn run begin:t username
 ```
 
-## 3. Image Download
+## 3. Searched Tweets list to CSV
+
+```bash
+yarn run begin:s searchQueryHere
+```
+
+## 4. Image Download
 
 ```bash
 yarn run begin:i username

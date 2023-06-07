@@ -7,6 +7,7 @@
   "scripts": {
     "begin:f": "node src/followerList.js",
     "begin:t": "node src/tweetList.js",
+    "begin:s": "node src/searchedTweetList.js",
     "begin:i": "node src/imageList.js"
   },
   "dependencies": {

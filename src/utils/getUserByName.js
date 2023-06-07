@@ -1,4 +1,4 @@
-const { twitterApiClient } = require('./twitterApiClient')
+const { twitterApiClient } = require('../libs/twitterApiClient')
 
 /**
  * user name から user を取得する

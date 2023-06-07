@@ -1,20 +1,17 @@
 const { createObjectCsvWriter } = require('csv-writer')
 
-const { getUserByName } = require('./utils/getUserByName')
-const { getAllFollower } = require('./utils/getAllFollower')
+const { searchTweet } = require('./utils/searchTweet')
 
-const userName = process.argv[2]
+const searchQuery = process.argv[2]
 
 ;(async () => {
-  if (!userName) {
+  if (!searchQuery) {
     throw Error('arguments needed')
   }
 
   console.log('process')
 
-  const user = await getUserByName(userName)
-
-  const list = await getAllFollower(user.id)
+  const list = await searchTweet(searchQuery)
 
   console.log(`List count: ${list.length}`)
 
@@ -23,8 +20,8 @@ const userName = process.argv[2]
 
   // CSV
   const csvWriter = createObjectCsvWriter({
-    path: `./out/follower_list_${dateStr}.csv`,
-    header: ['id', 'username', 'name']
+    path: `./out/searched_tweet_list_${dateStr}.csv`,
+    header: ['id', 'text']
   })
   await csvWriter.writeRecords(list).catch((err) => {
     console.dir(err)

@@ -1,4 +1,4 @@
-const { twitterApiClient } = require('./twitterApiClient')
+const { twitterApiClient } = require('../libs/twitterApiClient')
 
 /**
  * すべてのフォロワーを取得する
